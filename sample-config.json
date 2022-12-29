@@ -1,0 +1,15 @@
+{
+    "totalConnectComfort": {
+        "username": "",
+        "password": "",
+        "deviceId": 12345
+    },
+    "influxDb": {
+        "url": "",
+        "org": "",
+        "bucket": "",
+        "token": "",
+        "sslVerify": true
+    },
+    "pollInterval": 30
+}
