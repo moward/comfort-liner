@@ -8,6 +8,7 @@ from threading import Event
 
 import influxdb_client
 import somecomfort
+from influxdb_client.rest import ApiException
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(format="%(asctime)s %(name)s %(message)s", level=logging.INFO)
@@ -92,7 +93,10 @@ def main():
 
         logger.info(f"Writing data for {device.name} at {timestamp}")
 
-        write_api.write(bucket, None, data_point)
+        try:
+            write_api.write(bucket, None, data_point)
+        except ApiException as e:
+            logger.error(f"Encountered error {e.status}: {e.reason}")
 
         logger.info(f"Wrote data for {device.name} at {timestamp}")
 
